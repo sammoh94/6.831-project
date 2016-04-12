@@ -7,22 +7,22 @@ html, body {
 }
 
 #map {
-	height: 65%;
+	height: 67%;
 	padding: 2px;
 	z-index: 0;
 }
 
 #form-container {
-	height: 35%;
-	font-size: 12pt;
+	height: 33%;
+	font-size: 14pt;
 	padding: 10px;
 	z-index: 1;
 }
 
 .btn {
-	height: 100px;
+	height: 120px;
 	width: 100%;
-	font-size: 24pt;
+	font-size: 42pt;
 	background-color: #7B1FA2;
 	border-radius: 10px;
 	color: white;
@@ -38,7 +38,7 @@ a {
 }
 
 h2 {
-	font-size: 28pt;
+	font-size: 40pt;
 	text-align: center;
 	text-overflow: ellipsis;
 }

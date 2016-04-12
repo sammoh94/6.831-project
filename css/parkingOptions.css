@@ -1,14 +1,14 @@
 #parkingOptions caption {
 	font-size: 24pt;
 	color: #444;
-	margin: 5px;
+	margin: 10px;
 	text-overflow: ellipsis;
 }
 
 #parkingOptions {
 	background-color: #fff;
 	color: #000
-	border-radius: 5px;
+	border-radius: 5px 5px 10px 5px;
 	width: 100%;
 	font-size: 12pt; 
 }
@@ -24,8 +24,8 @@
 }
 #parkingOptions tbody td {
 	padding: .8rem;
-	height: 120px;
-	font-size: 18pt;
+	height: 300px;
+	font-size: 26pt;
 	color: #444;
 	background: #eee;
 }
