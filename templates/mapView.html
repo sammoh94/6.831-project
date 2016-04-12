@@ -12,7 +12,9 @@
 	</head>
 	<body>
 		<div id="map"></div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async defer></script>
 		<script>
+			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
 			function initMap() {
 				var location = {lat: 42.3590956, lng: -71.100438};
 
@@ -26,6 +28,22 @@
 				})
 			}
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async defer></script>
+		<div id="form-container">
+			<form>
+				<fieldset class="form-group">
+					<input type="text" class="form-control" id="inputAddress" placeholder="Find Parking Near">
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="radiusSelect" id="labelForRadiusSelect">Radius:</label>
+					<select id="radiusSelect" class="form-control">
+						<option value="0.5">0.5</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="5">5 or more</option>
+					</select>
+				</fieldset>
+				<button type="submit" class="btn"><a href="parkingOptions.html">FIND PARKING!</a></button>
+			</form>
+		</div>
 	</body>
 </html>
