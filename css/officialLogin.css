@@ -1,0 +1,78 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #dde7f2;
+	font-family: 'Helvetica Neue';
+}
+
+form {
+	height: 60%;
+	margin: 0;
+	padding: 0;
+}
+
+.button {
+	width: 60%;
+	height: 10%;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	background-color: #315987;
+	border-radius: 10px;
+	color: white;
+	font-size: 5vmin;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.text-field {
+	width: 60%;
+	height: 10%;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	font-size: 3vmin;
+}
+
+#blank1 {
+	height: 8%;
+}
+
+#blank2 {
+	height: 15%;
+}
+
+#blank3 {
+	height: 5%;
+}
+
+#blank4 {
+	height: 10%;
+}
+
+#title {
+	height: 10%;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 8vmin;
+	color: #315987;
+}
+
+#goback {
+	height:7%;
+}
+
+#goback:hover {
+	cursor: pointer;
+}
