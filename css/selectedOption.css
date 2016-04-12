@@ -7,25 +7,26 @@ html, body {
 }
 
 #map {
-	height: 60%;
+	height: 65%;
 	padding: 2px;
 	z-index: 0;
 }
 
 #form-container {
-	height: 40%;
-	font-size: 12pt;
+	height: 35%;
+	font-size: 14pt;
 	padding: 10px;
 	z-index: 1;
 }
 
 .btn {
-	height: 50px;
+	height: 120px;
 	width: 100%;
-	font-size: 16pt;
+	font-size: 42pt;
 	background-color: #7B1FA2;
 	border-radius: 10px;
 	color: white;
+	padding: 20px;
 }
 
 fieldset, button {
@@ -38,11 +39,16 @@ a {
 }
 
 h2 {
-	font-size: 20pt;
+	font-size: 40pt;
 	text-align: center;
 	text-overflow: ellipsis;
+	font-weight: bold;
 }
 
 .form-group {
-	font-size: 16pt;
+	font-size: 32pt;
+}
+
+input {
+	padding: 10px;
 }
