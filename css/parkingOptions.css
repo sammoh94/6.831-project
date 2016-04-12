@@ -1,0 +1,36 @@
+#parkingOptions caption {
+	font-size: 20pt;
+	color: #444;
+	margin: 5px;
+	text-overflow: ellipsis;
+}
+
+#parkingOptions {
+	background-color: #fff;
+	color: #000
+	border-radius: 5px;
+	width: 100%;
+	font-size: 12pt; 
+}
+
+#parkingOptions thead th {
+	font-weight: 600;
+}
+
+#parkingOptions thead th, 
+	#parkingOptions tbody td {
+	padding: .8rem;
+	font-size: 16pt; 
+}
+#parkingOptions tbody td {
+	padding: .8rem;
+	height: 100px;
+	font-size: 12pt;
+	color: #444;
+	background: #eee;
+}
+
+#parkingOptions tbody tr:not(:last-child) {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd; 
+}

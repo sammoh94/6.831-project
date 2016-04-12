@@ -7,33 +7,16 @@ html, body {
 }
 
 #map {
-	height: 70%;
+	height: 60%;
 	padding: 2px;
+	z-index: 0;
 }
 
 #form-container {
-	height: 30%;
-	font-size: 16pt;
+	height: 40%;
+	font-size: 12pt;
 	padding: 10px;
-}
-
-#inputAddress {
-	height: 50px;
-	font-size: 14pt;
-	border: 1px solid blue;
-}
-
-#radiusSelect {
-	width: 200px;
-	height: 50px;
-	font-size: 14pt;
-	display: inline-block;
-	position: relative;
-	left: 20%;
-}
-
-#labelForRadiusSelect {
-	position: absolute;
+	z-index: 1;
 }
 
 .btn {
@@ -45,7 +28,21 @@ html, body {
 	color: white;
 }
 
-fieldset, a {
+fieldset, button {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+a {
+	color: white;
+}
+
+h2 {
+	font-size: 20pt;
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+.form-group {
+	font-size: 16pt;
 }

@@ -7,42 +7,47 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/mapView.css">
-	<script src="../js/mapView.js"></script>
+	<link rel="stylesheet" href="../css/selectedOption.css">
 	</head>
 	<body>
 		<div id="map"></div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async defer></script>
 		<script>
 			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
-			function initMap() {
-				var location = {lat: 42.3590956, lng: -71.100438};
+			function showDestination() {
+				var currentLocation = {lat: 42.3590956, lng: -71.100438};
+				var destinationLocation = {lat: 42.3601874, lng: -71.0935848}
 
 				var map = new google.maps.Map(document.getElementById('map'), {
-					center: location,
+					center: currentLocation,
 					zoom: 15
 				});
-				var marker = new google.maps.Marker({
-					position: location,
+				var markerAtCurrentLoc = new google.maps.Marker({
+					position: currentLocation,
 					map: map
-				})
+				});
+				var markerAtDestination = new google.maps.Marker({
+					position: destinationLocation,
+					map: map
+				});
 			}
 		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=showDestination" async defer></script>
 		<div id="form-container">
+			<h2> 9 Beacon St. Boston MA 02215</h2>
 			<form>
 				<fieldset class="form-group">
-					<input type="text" class="form-control" id="inputAddress" placeholder="Find Parking Near">
+					<label for="locationCost">Price: </label>
+					<input type="text" id="locationCost" value="&dollar;2 per hour"readonly></input>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="radiusSelect" id="labelForRadiusSelect">Radius:</label>
-					<select id="radiusSelect" class="form-control">
-						<option value="0.5">0.5</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="5">5 or more</option>
-					</select>
+					<label for="numSpotsOpen">Spots Open: </label>
+					<input type="text" id="numSpotsOpen" value="26"readonly></input>
 				</fieldset>
-				<a href="parkingOptions.html" class="btn">FIND PARKING!</a>
+				<fieldset class="form-group">
+					<label for="timeLimit">Time Limit: </label>
+					<input type="text" id="timeLimit" value="2 hours"readonly></input>
+				</fieldset>
+				<a href="directions.html" class="btn">GET DIRECTIONS!</a>
 			</form>
 		</div>
 	</body>
