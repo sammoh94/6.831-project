@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>StreetPark</title>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/appStartView.css">
+	<script src="../js/appStartView.js"></script>
+	</head>
+	<body>
+		<div id="blank1"></div>
+		<img class="logo" src="../resources/logo2.png"></img>
+		<div id="blank2"></div>
+		<div id="car_owner" class="button">CAR OWNER</div>
+		<div id="blank3"></div>
+		<div id="parking_official" class="button">PARKING OFFICIAL</div>
+
+		<script type="text/javascript">
+
+	    // This allows the Javascript code inside this block to only run when the page
+	    // has finished loading in the browser.
+	    $(document).ready(function() {
+	    	var backgroundColor=$(".button").css('background-color');
+	    	var textColor=$(".button").css('color');
+		    $(".button").hover(
+		    function() {
+		        //mouse over
+		        $(this).css('background', '#76a3d6')
+		        // $(this).css('color', backgroundColor)
+		    }, function() {
+		        //mouse out
+		        $(this).css('background', backgroundColor)
+		        // $(this).css('color', textColor)
+		    });
+
+		    $("#car_owner").click(function() {
+		    	window.location="mapView.html"
+		    });
+
+		    $("#parking_official").click(function() {
+		    	window.location="officialLogin.html"
+		    });
+
+
+	    });
+</script>
+	</body>
+</html>
