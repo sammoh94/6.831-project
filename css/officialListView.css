@@ -39,7 +39,7 @@ html, body {
 	font-weight: bold;
 	color: #444;
 	background: #eee;
-	padding-left: 25px;
+	padding: 0px 25px 0px 25px;
 }
 
 .tab-pane tbody tr:not(:last-child) {
