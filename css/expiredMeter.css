@@ -7,13 +7,13 @@ html, body {
 }
 
 #map {
-	height: 65%;
+	height: 70%;
 	padding: 2px;
 	z-index: 0;
 }
 
 #form-container {
-	height: 35%;
+	height: 30%;
 	font-size: 14pt;
 	padding: 10px;
 	z-index: 1;
@@ -23,11 +23,11 @@ html, body {
 	height: 120px;
 	width: 100%;
 	font-size: 42pt;
-	background-color: #7B1FA2;
+	background-color: #F44336;
 	border-radius: 10px;
 	color: white;
-	padding: 20px;
 	font-weight: bold;
+	padding: 20px;
 }
 
 fieldset, button {
@@ -39,17 +39,14 @@ a {
 	color: white;
 }
 
-h2 {
-	font-size: 40pt;
-	text-align: center;
-	text-overflow: ellipsis;
-	font-weight: bold;
-}
-
 .form-group {
 	font-size: 32pt;
 }
 
 input {
 	padding: 10px;
+}
+
+#locationAddress {
+	width: 78%;
 }

@@ -1,6 +1,6 @@
 html, body {
 	height: 100%;
-	margin: 0;
+	margin: 0 2px 0 2px;
 	padding: 0;
 	background-color: #E0E0E0;
 	font-family: 'Helvetica Neue';
@@ -45,6 +45,7 @@ html, body {
 	border-radius: 10px;
 	color: white;
 	padding: 20px;
+	font-weight: bold;
 }
 
 fieldset, a {

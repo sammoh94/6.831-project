@@ -7,43 +7,34 @@ html, body {
 }
 
 #map {
-	height: 65%;
+	height: 70%;
 	padding: 2px;
 	z-index: 0;
 }
 
 #form-container {
-	height: 35%;
+	height: 30%;
 	font-size: 14pt;
 	padding: 10px;
 	z-index: 1;
 }
 
-.btn {
+#expiringNotice {
 	height: 120px;
+	margin-top: 10px;
 	width: 100%;
 	font-size: 42pt;
-	background-color: #7B1FA2;
-	border-radius: 10px;
-	color: white;
-	padding: 20px;
 	font-weight: bold;
+	background-color: #FFEE58;
+	border-radius: 10px;
+	color: black;
+	padding: 20px;
+	text-align: center;
 }
 
 fieldset, button {
 	margin-top: 15px;
 	margin-bottom: 15px;
-}
-
-a {
-	color: white;
-}
-
-h2 {
-	font-size: 40pt;
-	text-align: center;
-	text-overflow: ellipsis;
-	font-weight: bold;
 }
 
 .form-group {
@@ -52,4 +43,8 @@ h2 {
 
 input {
 	padding: 10px;
+}
+
+#locationAddress {
+	width: 78%;
 }
