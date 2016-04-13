@@ -5,6 +5,5 @@
 			localStorage.setItem('clickedRow', $id);
 			window.location = $(this).data("href");
 		});
-		console.log(localStorage.getItem('clickedRow'));
 	});
 })();
