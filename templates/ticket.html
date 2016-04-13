@@ -44,7 +44,11 @@
 		    });
 
 		    $("#finish").click(function() {
-		    	window.location="officialListView.html"
+		    	var currentTableElements = JSON.parse(sessionStorage.getItem('tableElements'));
+		    	var indexToRemove = parseInt(sessionStorage.getItem('clickedRow'));
+		    	currentTableElements.splice(indexToRemove, 1);
+		    	sessionStorage.setItem('tableElements', JSON.stringify(currentTableElements));
+		    	window.location="officialListView.html";
 		    });
 
 
