@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>StreetPark</title>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/warningMeter.css">
+	</head>
+	<body>
+		<div id="map"></div>
+		<script>
+			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
+			function showDestination() {
+				var firstPinColor  = "FE7569";
+				var secondPinColor = "9CCC65";
+				// current location marker
+		    	var firstPinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + firstPinColor,
+		        new google.maps.Size(21, 34),
+		        new google.maps.Point(0,0),
+		        new google.maps.Point(10, 34));
+		    	var firstPinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+		        new google.maps.Size(40, 37),
+		        new google.maps.Point(0, 0),
+		        new google.maps.Point(12, 35));
+		        // destination marker
+		        var secondPinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + secondPinColor,
+		        new google.maps.Size(21, 34));
+		    	var secondPinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+		        new google.maps.Size(40, 37),
+		        new google.maps.Point(0, 0),
+		        new google.maps.Point(12, 35));
+			
+				var currentLocation = {lat: 42.3497377, lng: -71.0911602};
+				var destinationLocation = {lat: 42.3409077, lng: -71.0886801}
+
+				var map = new google.maps.Map(document.getElementById('map'), {
+					center: currentLocation,
+					zoom: 15
+				});
+				var markerAtCurrentLoc = new google.maps.Marker({
+					position: currentLocation,
+					map: map,
+					icon: secondPinImage,
+					shadow: secondPinShadow
+				});
+				var markerAtDestination = new google.maps.Marker({
+					position: destinationLocation,
+					map: map,
+					icon: firstPinImage,
+					shadow: firstPinShadow
+				});
+			}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=showDestination" async defer></script>
+		<div id="form-container">
+			<form>
+				<fieldset class="form-group">
+					<label for="locationAddress">Address: </label>
+					<input type="text" id="locationAddress" value="32 Vassar St, Cambridge, MA 02139"readonly></input>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="meterNumber">Meter No.: </label>
+					<input type="text" id="meterNumber" value="20"readonly></input>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="licensePlateNumber">License Plate #: </label>
+					<input type="text" id="licensePlateNumber" value="M13544K"readonly></input>
+				</fieldset>
+				<h2 id="expiringNotice">Expires in 3 minutes!</h2>
+			</form>
+		</div>
+	</body>
+</html>f
