@@ -1,0 +1,18 @@
+{
+	"parkingOptions" : [
+	{
+		"name": "64 Bay State Road",
+		"address": "64 Bay State Road, Boston, MA 02215",
+		"duration": 2,
+		"price": "$3 per hour",
+		"numSpotsOpen": 40
+	},
+	{
+		"name": "64 Bay State Road",
+		"address": "64 Bay State Road, Boston, MA 02215",
+		"duration": 2,
+		"price": "$3 per hour",
+		"numSpotsOpen": 40	
+	}
+	]
+}
