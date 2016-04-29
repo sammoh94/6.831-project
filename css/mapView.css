@@ -7,14 +7,16 @@ html, body {
 }
 
 #map {
-	height: 70%;
+	height: 65%;
 	padding: 2px;
+	display: none;
 }
 
 #form-container {
-	height: 30%;
+	height: 35%;
 	font-size: 40pt;
 	padding: 10px;
+	display: none;
 }
 
 #inputAddress {
@@ -51,4 +53,11 @@ html, body {
 fieldset, a {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+#loadingView {
+	background-image: url("../resources/loading.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	height: 100%;
 }
