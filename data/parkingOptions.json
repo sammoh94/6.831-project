@@ -4,15 +4,43 @@
 		"name": "64 Bay State Road",
 		"address": "64 Bay State Road, Boston, MA 02215",
 		"duration": 2,
-		"price": "$3 per hour",
+		"price": 3,
 		"numSpotsOpen": 40
 	},
 	{
-		"name": "64 Bay State Road",
-		"address": "64 Bay State Road, Boston, MA 02215",
+		"name": "49 Lansdowne St",
+		"address": "49 Lansdowne St, Boston, MA 02215",
+		"duration": 5,
+		"price": 5,
+		"numSpotsOpen": 21	
+	},
+	{
+		"name": "55 Franklin St",
+		"address": "55 Franklin St, Cambridge, MA 02139",
+		"duration": 3,
+		"price": 6,
+		"numSpotsOpen": 10	
+	},
+	{
+		"name": "260 Green St",
+		"address": "260 Green St, Cambridge, MA 02139",
+		"duration": 4,
+		"price": 8,
+		"numSpotsOpen": 19	
+	},
+	{
+		"name": "1 Kendall Square",
+		"address": "1 Kendall Square, Cambridge, MA 02139",
+		"duration": 5,
+		"price": 2,
+		"numSpotsOpen": 15	
+	},
+	{
+		"name": "47 Erie St",
+		"address": "47 Erie St, Cambridge, MA 02319",
 		"duration": 2,
-		"price": "$3 per hour",
-		"numSpotsOpen": 40	
+		"price": 10,
+		"numSpotsOpen": 33	
 	}
 	]
 }

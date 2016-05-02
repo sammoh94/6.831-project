@@ -4,38 +4,81 @@
 	<title>StreetPark</title>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/parkingOptions.css">
-	<script src="../js/parkingOptions.js"></script>
 	</head>
 	<body>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async></script>
+		<script>
+			var streetParkRef = new Firebase("https://streetparkmit.firebaseio.com/");
+			var displayedOptions = [];
+
+			function getDestinationAddresses(parkingObjects) {
+				var listOfAddresses = [];
+				parkingObjects.forEach(function (element) {
+					listOfAddresses.push(element.address);
+				});
+				return listOfAddresses;
+			}
+
+			function getParkingOptions() {
+				streetParkRef.on("value", function(snapshot) {
+				  var allParkingOptions = snapshot.val().parkingOptions;
+				  var parkOptionsAddresses = getDestinationAddresses(allParkingOptions);
+				  var distanceService = new google.maps.DistanceMatrixService();
+					var originAddr = sessionStorage.getItem('currentAddress');
+					distanceService.getDistanceMatrix({
+					origins: [originAddr],
+					destinations: parkOptionsAddresses,
+					travelMode: google.maps.TravelMode.DRIVING,
+					unitSystem: google.maps.UnitSystem.IMPERIAL,
+					avoidHighways: false,
+					avoidTolls: false
+				}, function (response, status) {
+						if (status == google.maps.DistanceMatrixStatus.OK) {
+							var origin = response.originAddresses;
+							var destination = response.destinationAddresses;
+							var radius = sessionStorage.getItem("radius");
+							var responseList = response.rows[0].elements;
+							// filter list of parking options if they are in the given radius
+							var filteredOptions = [];
+							for (var i=0; i<responseList.length; i++) {
+								var currentItem = responseList[i];
+								if (parseFloat(currentItem.distance.text) <= radius) {
+									allParkingOptions[i].distance = currentItem.distance.text;
+									filteredOptions.push(allParkingOptions[i]);
+								}
+							}
+							populateTable(filteredOptions); 
+						}
+					});
+				});
+			}
+
+			function populateTable(optionsToDisplay) {
+				displayedOptions = optionsToDisplay;
+				optionsToDisplay.forEach(function (element) {
+					var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+'</td>')
+					$("#optionsTableBody").append($row);
+				})
+			}
+
+			$(document).ready(function () {
+				$("#tableCaption").html("Parking Options Near " + sessionStorage.getItem("currentAddress"));
+				$(".ownerItem").click(function (event) {
+					window.location = $(this).data("href");
+				});
+			});
+
+		</script>
 		<table id="parkingOptions">
-			<caption>Parking options near the Prudential Center</caption>
+			<caption id="tableCaption"></caption>
 			<thead>
-				<tr><th>Address</th><th>Price</th><th>Distance</th>
+				<tr><th>Address</th><th>Price (per hour)</th><th>Distance</th>
 			</thead>
-			<tbody>
-				<tr class="ownerItem" data-href="selectedOption.html">
-					<td data-th="Address">9 Beacon St</td>
-					<td data-th="Price">&dollar;2 per hour</td>
-					<td data-th="Distance">0.7 miles</td>
-				</tr>
-				<tr class="ownerItem" data-href="selectedOption.html">
-					<td data-th="Address">24 Tremont St</td>
-					<td data-th="Price">&dollar;1 per hour</td>
-					<td data-th="Distance">0.9 miles</td>
-				</tr>
-				<tr class="ownerItem" data-href="selectedOption.html">
-					<td data-th="Address">36 Berkeley St</td>
-					<td data-th="Price">&dollar;4 per hour</td>
-					<td data-th="Distance">1.4 miles</td>
-				</tr>
-				<tr class="ownerItem" data-href="selectedOption.html">
-					<td data-th="Address">117 A St</td>
-					<td data-th="Price">&dollar;7 per hour</td>
-					<td data-th="Distance">1.9 miles</td>
-				</tr>
+			<tbody id="optionsTableBody">
 			</tbody>
 		</table>
 	</body>
