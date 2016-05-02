@@ -28,7 +28,7 @@
 				  var allParkingOptions = snapshot.val().parkingOptions;
 				  var parkOptionsAddresses = getDestinationAddresses(allParkingOptions);
 				  var distanceService = new google.maps.DistanceMatrixService();
-					var originAddr = sessionStorage.getItem('currentAddress');
+					var originAddr = sessionStorage.getItem('originAddress');
 					distanceService.getDistanceMatrix({
 					origins: [originAddr],
 					destinations: parkOptionsAddresses,
@@ -47,32 +47,72 @@
 							for (var i=0; i<responseList.length; i++) {
 								var currentItem = responseList[i];
 								if (parseFloat(currentItem.distance.text) <= radius) {
-									allParkingOptions[i].distance = currentItem.distance.text;
+									allParkingOptions[i].distance = parseFloat(currentItem.distance.text);
 									filteredOptions.push(allParkingOptions[i]);
 								}
 							}
+							displayedOptions = filteredOptions;
+							$(".sort").attr("disabled", false);
 							populateTable(filteredOptions); 
 						}
 					});
 				});
 			}
 
+			function sortByDistance() {
+				var updatedList = displayedOptions;
+				updatedList.sort(function (a, b) {
+					var keyA = a.distance,
+						keyB = b.distance;
+					if (keyA < keyB) return -1;
+					if (keyA > keyB) return 1;
+					return 0;
+				})
+				populateTable(updatedList);
+			}
+
+			function sortByPrice() {
+				var updatedList = displayedOptions;
+				updatedList.sort(function (a, b) {
+					var keyA = a.price,
+						keyB = b.price;
+					if (keyA < keyB) return -1;
+					if (keyA > keyB) return 1;
+					return 0;
+				})
+				populateTable(updatedList);
+			}
+
 			function populateTable(optionsToDisplay) {
-				displayedOptions = optionsToDisplay;
+				$("#optionsTableBody").empty();
 				optionsToDisplay.forEach(function (element) {
-					var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+'</td>')
+					var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+' mi</td>')
 					$("#optionsTableBody").append($row);
 				})
 			}
 
 			$(document).ready(function () {
-				$("#tableCaption").html("Parking Options Near " + sessionStorage.getItem("currentAddress"));
-				$(".ownerItem").click(function (event) {
+				$("#tableCaption").html("Parking Options Near " + sessionStorage.getItem("originAddress"));
+				$("#optionsTableBody").on('click', '.ownerItem', function (event) {
+					var clickedOptionIndex = $(this).index();
+					sessionStorage.setItem("selectedParkingOption", JSON.stringify(displayedOptions[clickedOptionIndex]));
 					window.location = $(this).data("href");
+				});
+
+				$('#sortByPrice').click(function () {
+					sortByPrice();
+				});
+
+				$("#sortByDistance").click(function () {
+					sortByDistance();
 				});
 			});
 
 		</script>
+		<div id="sortButtonContainer">
+			<button id="sortByPrice" class="btn btn-primary sort" disabled>Sort By Price</button>
+			<button id="sortByDistance" class="btn btn-primary sort" disabled>Sort By Distance</button>
+		</div>
 		<table id="parkingOptions">
 			<caption id="tableCaption"></caption>
 			<thead>

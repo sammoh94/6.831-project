@@ -30,10 +30,18 @@
 					map: map
 				});
 			}
+
+			$(document).ready(function () {
+				var selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
+				$("#selectedOptionAddress").html(selectedParkingOption.address);
+				$("#locationCost").val("$"+selectedParkingOption.price + " per hour");
+				$("#numSpotsOpen").val(selectedParkingOption.numSpotsOpen);
+				$("#timeLimit").val(selectedParkingOption.duration + " hour(s)");
+			}) ;
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=showDestination" async defer></script>
 		<div id="form-container">
-			<h2> 9 Beacon St. Boston MA 02215</h2>
+			<h2 id="selectedOptionAddress"></h2>
 			<form>
 				<fieldset class="form-group">
 					<label for="locationCost">Price: </label>
