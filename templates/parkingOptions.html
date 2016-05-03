@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="../css/parkingOptions.css">
 	</head>
 	<body>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async></script>
 		<script>
 			var streetParkRef = new Firebase("https://streetparkmit.firebaseio.com/");
 			var displayedOptions = [];
@@ -114,6 +113,7 @@
 			});
 
 		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async defer></script>
 		<div id="sortButtonContainer">
 			<button id="sortByPrice" class="btn btn-primary sort" disabled>Sort By Price</button>
 			<button id="sortByDistance" class="btn btn-primary sort" disabled>Sort By Distance</button>
