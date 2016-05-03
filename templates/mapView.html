@@ -67,6 +67,15 @@
 					$("#form-container").css("display", "block");
 				}
 			}
+
+			$(document).ready(function () {
+				$("#findParkingBtn").click(function (event) {
+					if ($("#inputAddress").val().length === 0) {
+						event.preventDefault();
+						window.alert("Please enter an address in the textbox");
+					}
+				});
+			})
 		</script>
 		<div id="loadingView">
 		</div>
