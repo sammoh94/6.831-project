@@ -18,15 +18,31 @@
 			// https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
 			function initMap() {
 				var latitude, longitude, geocoder = new google.maps.Geocoder;
+				var defaultLocation = {lat: 42.3497702, lng: -71.0959242}
+				var map = new google.maps.Map(document.getElementById('map'), {
+							center: defaultLocation,
+							zoom: 15
+				});
 				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function (position) {
+					// http://stackoverflow.com/questions/4565112/javascript-how-to-find-out-if-the-user-browser-is-chrome/13348618#13348618
+					var isChromium = window.chrome,
+						winNav = window.navigator,
+						vendorName = winNav.vendor,
+						isIOSChrome = winNav.userAgent.match("CriOS");
+					if (isIOSChrome || (isChromium !== null && isChromium !== undefined && vendorName === "Google Inc.")) {
+						var marker = new google.maps.Marker({
+							position: defaultLocation,
+							map: map
+						})
+						$("#loadingView").css("display", "none");
+						$("#map").css("display", "block");
+						$("#form-container").css("display", "block");
+					} else {
+						navigator.geolocation.getCurrentPosition(function (position) {
 						latitude = position.coords.latitude;
 						longitude = position.coords.longitude;
 						var location = {lat: latitude, lng: longitude};
-						var map = new google.maps.Map(document.getElementById('map'), {
-							center: location,
-							zoom: 15
-						});
+						map.setCenter(location);
 						var marker = new google.maps.Marker({
 							position: location,
 							map: map
@@ -40,18 +56,25 @@
 						$("#map").css("display", "block");
 						$("#form-container").css("display", "block");
 					});
+					}
 				} else {
-					window.alert("Please enable location services");
+					var marker = new google.maps.Marker({
+						position: defaultLocation,
+						map: map
+					})
+					$("#loadingView").css("display", "none");
+					$("#map").css("display", "block");
+					$("#form-container").css("display", "block");
 				}
 			}
 		</script>
-		<div id="loadingView" style="">
+		<div id="loadingView">
 		</div>
 		<div id="form-container">
 			<form>
 				<fieldset class="form-group">
 					<label for="inputAddress">Find Parking Near:</label>
-					<input type="text" class="form-control" id="inputAddress" placeholder="Find Parking Near">
+					<input type="text" class="form-control" id="inputAddress" placeholder="Find Parking Near" required>
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="radiusSelect" id="labelForRadiusSelect">Radius:</label>
@@ -62,7 +85,7 @@
 						<option value="3">3</option>
 					</select>
 				</fieldset>
-				<a href="parkingOptions.html" class="btn">FIND PARKING!</a>
+				<a href="parkingOptions.html" class="btn" id="findParkingBtn">FIND PARKING!</a>
 			</form>
 		</div>
 	</body>
