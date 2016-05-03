@@ -13,26 +13,38 @@
 		<div id="map"></div>
 		<script>
 			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
+			var selectedParkingOption;
 			function showDestination() {
-				var currentLocation = {lat: 42.3590956, lng: -71.100438};
-				var destinationLocation = {lat: 42.3601874, lng: -71.0935848}
-
 				var map = new google.maps.Map(document.getElementById('map'), {
-					center: currentLocation,
+					center: {lat: 42.3532264, lng: -71.0913747},
 					zoom: 15
 				});
-				var markerAtCurrentLoc = new google.maps.Marker({
-					position: currentLocation,
-					map: map
-				});
-				var markerAtDestination = new google.maps.Marker({
-					position: destinationLocation,
-					map: map
+				var geocoder = new google.maps.Geocoder();
+				selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
+
+				geocodeAddress(geocoder, map, sessionStorage.getItem("originAddress"));
+				geocodeAddress(geocoder, map, selectedParkingOption.address);
+
+			}
+			// https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple
+			function geocodeAddress(geocoder, map, address) {
+				geocoder.geocode({'address': address}, function (results, status) {
+					if (status === google.maps.GeocoderStatus.OK) {
+						// center map on destination address
+						var markerAtCurrentLoc = new google.maps.Marker({
+							position: results[0].geometry.location,
+							map: map
+						});
+						if (address === selectedParkingOption.address) {
+							map.setCenter(results[0].geometry.location);
+							$("#directionsBtn").attr("disabled", false);
+						}
+					}
 				});
 			}
 
 			$(document).ready(function () {
-				var selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
+				selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
 				$("#selectedOptionAddress").html(selectedParkingOption.address);
 				$("#locationCost").val("$"+selectedParkingOption.price + " per hour");
 				$("#numSpotsOpen").val(selectedParkingOption.numSpotsOpen);
@@ -55,7 +67,7 @@
 					<label for="timeLimit">Time Limit: </label>
 					<input type="text" id="timeLimit" value="2 hours"readonly></input>
 				</fieldset>
-				<a href="directions.html" class="btn">GET DIRECTIONS!</a>
+				<a href="directions.html" class="btn" id="directionsBtn" disabled>GET DIRECTIONS!</a>
 			</form>
 		</div>
 	</body>
