@@ -1,7 +1,7 @@
 (function () {
 	$(document).ready(function() {
-    	var backgroundColor=$(".button").css('background-color');
-    	var textColor=$(".button").css('color');
+		var backgroundColor=$(".button").css('background-color');
+		var textColor=$(".button").css('color');
 	    $(".button").hover(
 	    function() {
 	        //mouse over
@@ -13,14 +13,16 @@
 	        // $(this).css('color', textColor)
 	    });
 
-	    $("#car_owner").click(function() {
-	    	window.location="mapView.html"
+	    $("#addMeter").click(function() {
+	    	window.location="addMeterInformation.html"
 	    });
 
-	    $("#parking_official").click(function() {
-	    	window.location="officialLogin.html"
+	    $("#viewMeters").click(function() {
+	    	window.location="officialListView.html"
 	    });
 
-
-    });	
+	    $("#goback").click(function() {
+	    	window.location="appStartView.html"
+	    });  
+	});
 })();
