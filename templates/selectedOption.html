@@ -46,9 +46,9 @@
 			$(document).ready(function () {
 				selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
 				$("#selectedOptionAddress").html(selectedParkingOption.address);
-				$("#locationCost").val("$"+selectedParkingOption.price + " per hour");
-				$("#numSpotsOpen").val(selectedParkingOption.numSpotsOpen);
-				$("#timeLimit").val(selectedParkingOption.duration + " hour(s)");
+				$("#locationCost").html("$"+selectedParkingOption.price + " per hour");
+				$("#numSpotsOpen").html(selectedParkingOption.numSpotsOpen);
+				$("#timeLimit").html(selectedParkingOption.duration + " hour(s)");
 			}) ;
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=showDestination" async defer></script>
@@ -57,15 +57,15 @@
 			<form>
 				<fieldset class="form-group">
 					<label for="locationCost">Price: </label>
-					<input type="text" id="locationCost" value="&dollar;2 per hour"readonly></input>
+					<span id="locationCost"></span>
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="numSpotsOpen">Spots Open: </label>
-					<input type="text" id="numSpotsOpen" value="26"readonly></input>
+					<span id="numSpotsOpen"></span>
 				</fieldset>
 				<fieldset class="form-group">
 					<label for="timeLimit">Time Limit: </label>
-					<input type="text" id="timeLimit" value="2 hours"readonly></input>
+					<span id="timeLimit"></span>
 				</fieldset>
 				<a href="directions.html" class="btn" id="directionsBtn" disabled>GET DIRECTIONS!</a>
 			</form>

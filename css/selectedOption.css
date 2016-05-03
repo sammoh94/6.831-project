@@ -50,6 +50,8 @@ h2 {
 	font-size: 32pt;
 }
 
-input {
+span {
 	padding: 10px;
+	font-weight: bold;
+	color: #00838F;
 }
