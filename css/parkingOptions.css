@@ -48,3 +48,11 @@
 	width: 49%;
 	font-size: 32pt;
 }
+
+#emptyListHeading {
+	position: absolute;
+	top: 40%;
+	left: 12%;
+	font-size: 60pt;
+	font-weight: bold;
+}

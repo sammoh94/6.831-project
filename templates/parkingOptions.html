@@ -85,10 +85,15 @@
 
 			function populateTable(optionsToDisplay) {
 				$("#optionsTableBody").empty();
-				optionsToDisplay.forEach(function (element) {
-					var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+' mi</td>')
-					$("#optionsTableBody").append($row);
-				})
+				if (optionsToDisplay.length === 0) {
+					var $h1 = $("<h1 id='emptyListHeading'>No Parking Options Found</h1>");
+					$("#optionsTableBody").append($h1)
+				} else {
+					optionsToDisplay.forEach(function (element) {
+						var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+' mi</td>')
+						$("#optionsTableBody").append($row);
+					})
+				}
 			}
 
 			$(document).ready(function () {
