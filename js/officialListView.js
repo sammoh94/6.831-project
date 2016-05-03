@@ -1,4 +1,18 @@
 (function () {
+	var meterListings = new Firebase("https://streetparkofficialdata.firebaseio.com/");
+
+	function retrieveDataAndPopulate() {
+		var listOfMeters = [];
+		var dMatrix = new google.maps.DistanceMatrixService();
+		console.log(dMatrix);
+		meterListings.on("value", function (snapshot) {
+			for (var meter in snapshot.val().meters) {
+				listOfMeters.push(snapshot.val().meters[meter]);
+			}
+			console.log(listOfMeters);
+		});
+	}
+
 	function populateTable() {
 		var tableElements = [];
 		if (sessionStorage.getItem('tableElements') === null) {
@@ -26,6 +40,7 @@
 		}
 	}
 	$(document).ready(function () {
+		retrieveDataAndPopulate();
 		populateTable();
 		$(".officialItem").click(function (event) {
 			var $id = event.currentTarget.id;
