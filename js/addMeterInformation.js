@@ -24,11 +24,13 @@
 			var lotAddress = $("#parkingLotFullAddress").val();
 			var meterNumber = $("#meterNumber").val();
 			var licensePlateNumber = $("#licensePlateNumber").val();
+			var timeRemaining = $("#timeRemaining").val();
 			meters.push().set({
 				name: lotName,
 				address: lotAddress,
 				meterNumber: meterNumber,
 				licensePlateNumber: licensePlateNumber,
+				timeRemaining: timeRemaining,
 				createdAt: $.now()
 			});
 			window.location = "officialActionSelection.html";
