@@ -11,15 +11,17 @@
 	</head>
 	<body>
 		<img id="goback" src="../resources/backArrow.png"></img>
-		<div id="blank1"></div>
-		<div id="title">PARKING OFFICIAL</div>
-		<div id="blank2"></div>
+		<div class="blank1"></div>
+		<img class="logo" src="../resources/logo2.png"></img>
+		<div class="blank2"></div>
 
 		<form>
-			<input type="text" class="text-field" id="inputId" placeholder="User ID">
-			<div id="blank3"></div>
-			<input type="password" class="text-field" id="inputPwd" placeholder="Password">
-			<div id="blank4"></div>
+			<input type="text" class="form-control" id="inputId" placeholder="User ID">
+			<div class="blank3"></div>
+			<input type="password" class="form-control" id="inputPwd" placeholder="Password">
+			<div class="blank3"></div>
+			<input type="text" class="form-control" id="officialCurrentLocation" placeholder="Enter current location">
+			<div class="blank3"></div>
 			<div class="button" id="login">Login</div>
 		</form>
 
@@ -42,7 +44,12 @@
 		    });
 
 		    $("#login").click(function() {
-		    	window.location="officialActionSelection.html"
+		    	if ($("#officialCurrentLocation").val().length === 0) {
+		    		window.alert("Please enter your current location");
+		    	} else {
+		    		sessionStorage.setItem("officialOriginAddress", $("#officialCurrentLocation").val());
+		    		window.location="officialActionSelection.html"
+		    	}
 		    });
 
 		    $("#goback").click(function() {
