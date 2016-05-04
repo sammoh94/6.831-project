@@ -59,6 +59,7 @@
 			for (var i=0; i<expiredMeters.length; i++) {
 				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td class=addressTD data-th='Address'>" + expiredMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
 				$("#expiredTableBody").append(row);
+				addSwipeTo();
 			}
 		}
 	}
@@ -118,6 +119,21 @@
 		});
 		populateExpiredTable(listOfExpiredMeters);
 		populateWarningTable(listOfWarningMeters);
+	}
+
+	function addSwipeTo() {
+		$(".officialItem").swipe("destroy");
+		$(".officialItem").swipe({
+			swipe: function (event, direction, distance, duration, fingerCount) {
+				switch(direction) {
+					case "left":
+						var $index = $(this).index();
+						sessionStorage.setItem('selectedExpiredMeter', JSON.stringify(listOfExpiredMeters[$index]));
+						window.location = $(this).data("href");
+						break;
+				}
+			}
+		});
 	}
 
 	$(document).ready(function () {
