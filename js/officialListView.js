@@ -124,6 +124,7 @@
 	function addSwipeTo() {
 		$(".officialItem").swipe("destroy");
 		$(".officialItem").swipe({
+			allowPageScroll: "auto",
 			swipe: function (event, direction, distance, duration, fingerCount) {
 				switch(direction) {
 					case "left":

@@ -20,7 +20,8 @@
 		        var directionsDisplay = new google.maps.DirectionsRenderer;
 		        var map = new google.maps.Map(document.getElementById('map'), {
 		          zoom: 8,
-		          center: {lat: 42.3532264, lng: -71.0913747}
+		          center: {lat: 42.3532264, lng: -71.0913747},
+		          disableDefaultUI: true
 		        });
 		        directionsDisplay.setMap(map);
 		        calculateAndDisplayRoute(directionsService, directionsDisplay);

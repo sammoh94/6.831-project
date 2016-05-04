@@ -53,7 +53,8 @@
 							}
 							displayedOptions = filteredOptions;
 							$(".sort").attr("disabled", false);
-							populateTable(filteredOptions); 
+							populateTable(filteredOptions);
+							sortByDistance(); 
 						}
 					});
 				});
@@ -90,7 +91,7 @@
 					$("#optionsTableBody").append($h1)
 				} else {
 					optionsToDisplay.forEach(function (element) {
-						var $row = $('<tr class=ownerItem data-href=selectedOption.html><td data-th=Address>'+element.name+'</td><td data-th=Price>$'+element.price+'</td><<td data-th=Distance>'+element.distance+' mi</td>')
+						var $row = $('<tr class=ownerItem data-href=selectedOption.html><td class=addressTD data-th=Address>'+element.name+'</td><td class=priceTD data-th=Price>$'+element.price+'</td><<td class=distanceTD data-th=Distance>'+element.distance+' mi</td>')
 						$("#optionsTableBody").append($row);
 					})
 				}

@@ -61,7 +61,6 @@ html, body {
 
 #parkingOptions tbody td {
 	height: 300px;
-	width: 100%;
 	font-size: 36pt;
 	font-weight: bold;
 	color: #444;
@@ -151,4 +150,16 @@ html, body {
 	border: 2px solid #fff;
 	color: white;
 	font-size: 4vmin;
+}
+
+.addressTD {
+	width: 50%;
+}
+
+.priceTD {
+	width: 25%;
+}
+
+.distanceTD {
+	width: 25%;
 }
