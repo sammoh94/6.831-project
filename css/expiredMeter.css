@@ -7,13 +7,13 @@ html, body {
 }
 
 #map {
-	height: 70%;
+	height: 50%;
 	padding: 2px;
 	z-index: 0;
 }
 
 #form-container {
-	height: 30%;
+	height: 40%;
 	font-size: 14pt;
 	padding: 10px;
 	z-index: 1;

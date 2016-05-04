@@ -73,7 +73,6 @@ html, body {
 }
 .tab-pane tbody td {
 	height: 300px;
-	width: 100%;
 	font-size: 36pt;
 	font-weight: bold;
 	color: #444;
@@ -223,4 +222,12 @@ html, body {
 	border: 2px solid #fff;
 	color: white;
 	font-size: 4vmin;
+}
+
+.addressTD {
+	width: 70%;
+}
+
+.distanceTD {
+	width: 20%;
 }

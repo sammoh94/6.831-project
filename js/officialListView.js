@@ -35,16 +35,16 @@
 					for (var i=0; i < responseList.length; i++) {
 						var currentItem = responseList[i];
 						listOfMeters[i].distance = parseFloat(currentItem.distance.text);
-						if (Math.floor(($.now() - listOfMeters[i].createdAt)/ 60000) > parseInt(listOfMeters[i].timeRemaining)) {
+						if (Math.floor(($.now() - listOfMeters[i].createdAt)/ 60000) >= parseInt(listOfMeters[i].timeRemaining)) {
 							// meter has expired
 							listOfExpiredMeters.push(listOfMeters[i]);
 						} else {
 							listOfWarningMeters.push(listOfMeters[i]);
 						}
 					}
-					console.log(listOfExpiredMeters, listOfWarningMeters);
 					populateExpiredTable(listOfExpiredMeters);
-					populateWarningTable(listOfWarningMeters)
+					populateWarningTable(listOfWarningMeters);
+					sortByExpirationTime();
 				}
 			});
 		});
@@ -57,7 +57,7 @@
 			$("#expiredTableBody").append(h1);
 		} else {
 			for (var i=0; i<expiredMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td data-th='Address'>" + expiredMeters[i].name +"</td><td data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
+				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td class=addressTD data-th='Address'>" + expiredMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
 				$("#expiredTableBody").append(row);
 			}
 		}
@@ -70,10 +70,54 @@
 			$("#warningTableBody").append(h1);
 		} else {
 			for (var i=0; i<warningMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td data-th='Address'>" + warningMeters[i].name +"</td><td data-th='distance'>" + warningMeters[i].distance + " mi</td></tr>");
+				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td class=addressTD data-th='Address'>" + warningMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + warningMeters[i].distance + " mi</td></tr>");
 				$("#warningTableBody").append(row);
 			}
 		}
+	}
+
+	function sortByExpirationTime() {
+		var currentTimestamp = $.now()
+		listOfExpiredMeters.sort(function (a, b) {
+			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
+			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
+			var keyA = currentTimestamp - (a.createdAt + a_remainingTimeInMS),
+				keyB = currentTimestamp - (b.createdAt + b_remainingTimeInMS);
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+
+		listOfWarningMeters.sort(function (a, b) {
+			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
+			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
+			var keyA = (a.createdAt + a_remainingTimeInMS) - currentTimestamp,
+				keyB = (b.createdAt + b_remainingTimeInMS) - currentTimestamp;
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		populateExpiredTable(listOfExpiredMeters);
+		populateWarningTable(listOfWarningMeters);
+	}
+
+	function sortByDistance() {
+		listOfExpiredMeters.sort(function (a, b) {
+			var keyA = a.distance,
+				keyB = b.distance;
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		listOfWarningMeters.sort(function (a, b) {
+			var keyA = a.distance,
+				keyB = b.distance;
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		populateExpiredTable(listOfExpiredMeters);
+		populateWarningTable(listOfWarningMeters);
 	}
 
 	$(document).ready(function () {
@@ -89,6 +133,14 @@
 			var $index = $(this).index();
 			sessionStorage.setItem('selectedWarningMeter', JSON.stringify(listOfWarningMeters[$index]));
 			window.location = $(this).data("href");
+		});
+
+		$("#sort-distance").click(function () {
+			sortByDistance();
+		});
+
+		$("#sort-time").click(function () {
+			sortByExpirationTime();
 		});
 
 		$("#goback").click(function() {
