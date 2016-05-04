@@ -1,39 +1,77 @@
-#parkingOptions caption {
-	font-size: 24pt;
-	color: #444;
-	margin: 10px;
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Tahoma, Arial, sans-serif;
+	background-color: #fff;
+}
+
+#header {
+	height: 10%;
+}
+
+#goback {
+	height: 10%;
+	float: left;
+
+}
+
+#page-title {
+	text-align: center;
+	font-size: 50px;
+}
+
+#tableCaption {
+	padding-left: 40px;
+	padding-right: 40px;
+	height: 10%;
+	padding-top: 25px;
+	font-size: 10pt;
+	color: #5B6EC9;
 	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.container {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height:75%;
+	overflow: auto;
 }
 
 #parkingOptions {
-	background-color: #fff;
-	color: #000
-	border-radius: 5px 5px 10px 5px;
+	background-color: #eee;
+	color: #000;
 	width: 100%;
 	font-size: 12pt; 
 }
 
 #parkingOptions thead th {
 	font-weight: 600;
+	background-color: #E6E6FA;
 }
 
 #parkingOptions thead th, 
 	#parkingOptions tbody td {
 	padding: .8rem;
-	font-size: 16pt; 
+	font-size: 20pt; 
 }
+
 #parkingOptions tbody td {
-	padding: .8rem;
 	height: 300px;
+	width: 100%;
 	font-size: 36pt;
 	font-weight: bold;
 	color: #444;
 	background: #eee;
+	padding: 0px 25px 0px 25px;
 }
 
 #parkingOptions tbody tr:not(:last-child) {
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd; 
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333; 
 }
 
 #sortButtonContainer {
@@ -65,4 +103,52 @@
 #tableheader {
 	font-size: 28pt;
 	font-weight: bold;
+}
+
+#sort-bar {
+	background-color: #000;
+	width: 100%;
+	height: 120px;
+	bottom: 0px;
+	color: #fff;
+	position: absolute;
+}
+
+#sort-title {
+	font-size: 50px;
+	position: absolute;
+	left: 60px;
+	line-height: 120px;
+	vertical-align: middle;
+}
+
+#sort-distance {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 20px;
+	position: absolute;
+	left: 450px;
+	vertical-align: middle;
+	line-height: 80px;
+	height: 80px;
+	text-decoration: none;
+	border: 2px solid #000;
+	color: black;
+	background-color: white;
+	font-size: 4vmin;
+}
+
+#sort-time {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 20px;
+	position: absolute;
+	right: 80px;
+	vertical-align: middle;
+	line-height: 80px;
+	height: 80px;
+	text-decoration: none;
+	border: 2px solid #fff;
+	color: white;
+	font-size: 4vmin;
 }

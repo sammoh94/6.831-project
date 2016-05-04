@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="../css/backbutton.css">
 	</head>
 	<body>
-		<div id="header"><img id="goback" src="../resources/backArrow.png"></img></div>
 		<script>
 			var streetParkRef = new Firebase("https://streetparkmit.firebaseio.com/");
 			var displayedOptions = [];
@@ -119,18 +118,25 @@
 			});
 
 		</script>
-		<h2 id="tableCaption"></h2>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async defer></script>
-		<div id="sortButtonContainer">
-			<button id="sortByPrice" class="btn btn-primary sort" disabled>Sort By Price</button>
-			<button id="sortByDistance" class="btn btn-primary sort" disabled>Sort By Distance</button>
+		<div id="header">
+			<div id="goback"> <img src="../resources/backArrow.png"> </img> </div>
 		</div>
-		<table id="parkingOptions">
-			<thead id="tableheader">
-				<tr><th>Address</th><th>&dollar;/hr</th><th>Distance</th>
-			</thead>
-			<tbody id="optionsTableBody">
-			</tbody>
-		</table>
+		<div id="tableCaption"></div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async defer></script>
+		<div class="container">
+			<table id="parkingOptions">
+				<thead id="tableheader">
+					<tr><th>Address</th><th>&dollar;/hr</th><th>Distance</th>
+				</thead>
+				<tbody id="optionsTableBody">
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="sort-bar">
+			<div id="sort-title"> SORT BY: </div>
+			<div class="sort-button" id="sort-distance"> Distance </div>
+			<div class="sort-button" id="sort-time"> Price </div>
+		</div>
 	</body>
 </html>
