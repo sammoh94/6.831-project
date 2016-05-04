@@ -5,6 +5,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/ticket.css">
@@ -19,18 +20,20 @@
 
 		<div id="text">FINISHED TICKETING</div>
 		<div class="blank"></div>
-		<div id="license">LOLH4H4</div>
+		<div id="license"></div>
 		<div class="blank"></div>
-		<div id="location">on 64 Bay State Rd?</div>
+		<div id="location"></div>
 		<div class="blank"></div>
 		<div class="blank"></div>
 		<div id="finish" class="button">YES DONE TICKETING</div>
 
 		<script type="text/javascript">
-
+			var meterListings = new Firebase("https://streetparkofficialdata.firebaseio.com/");
+			var meters = meterListings.child("meters");
 	    // This allows the Javascript code inside this block to only run when the page
 	    // has finished loading in the browser.
 	    $(document).ready(function() {
+	    	var expiredMeterAddress = JSON.parse(sessionStorage.getItem("selectedExpiredMeter"));
 	    	var backgroundColor=$(".button").css('background-color');
 	    	var textColor=$(".button").css('color');
 		    $(".button").hover(
@@ -44,11 +47,11 @@
 		        // $(this).css('color', textColor)
 		    });
 
+		    $("#license").html(expiredMeterAddress.licensePlateNumber);
+		    $("#location").html("at " + expiredMeterAddress.address);
+
 		    $("#finish").click(function() {
-		    	var currentTableElements = JSON.parse(sessionStorage.getItem('tableElements'));
-		    	var indexToRemove = parseInt(sessionStorage.getItem('clickedRow'));
-		    	currentTableElements.splice(indexToRemove, 1);
-		    	sessionStorage.setItem('tableElements', JSON.stringify(currentTableElements));
+		    	meters.child(expiredMeterAddress.id).remove();
 		    	window.location="officialListView.html";
 		    });
 
@@ -58,6 +61,6 @@
 
 
 	    });
-</script>
+		</script>
 	</body>
 </html>

@@ -1,6 +1,5 @@
 (function () {
 	var meterListings = new Firebase("https://streetparkofficialdata.firebaseio.com/");
-	var meters = meterListings.child("meters");
 	var listOfExpiredMeters = [];
 	var listOfWarningMeters = [];
 
@@ -50,7 +49,7 @@
 	}
 
 	function populateExpiredTable(expiredMeters) {
-		// check if expiredtableElements is empty or not
+		$("#expiredTableBody").empty();
 		if (expiredMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Expired Meters</h1>");
 			$("#expiredTableBody").append(h1);
@@ -63,6 +62,7 @@
 	}
 
 	function populateWarningTable(warningMeters) {
+		$("#warningTableBody").empty();
 		if (warningMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Warning Meters</h1>");
 			$("#warningTableBody").append(h1);
@@ -76,7 +76,7 @@
 
 	$(document).ready(function () {
 		retrieveDataAndPopulate();
-		// setInterval(retrieveDataAndPopulate, 60000);
+		setInterval(retrieveDataAndPopulate, 60000);
 		$("#expiredTableBody").on('click', '.officialItem', function (event) {
 			var $index = $(this).index();
 			sessionStorage.setItem('selectedExpiredMeter', JSON.stringify(listOfExpiredMeters[$index]));
