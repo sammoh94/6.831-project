@@ -35,7 +35,7 @@
 					for (var i=0; i < responseList.length; i++) {
 						var currentItem = responseList[i];
 						listOfMeters[i].distance = parseFloat(currentItem.distance.text);
-						if (Math.floor(($.now() - listOfMeters[i].createdAt)/ 60000) > parseInt(listOfMeters[i].timeRemaining)) {
+						if (Math.floor(($.now() - listOfMeters[i].createdAt)/ 60000) >= parseInt(listOfMeters[i].timeRemaining)) {
 							// meter has expired
 							listOfExpiredMeters.push(listOfMeters[i]);
 						} else {
