@@ -52,6 +52,7 @@
 
 	function populateExpiredTable(expiredMeters) {
 		$("#expiredList tr").remove();
+		$("#expiredList h1").remove();
 		if (expiredMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Expired Meters</h1>");
 			$("#expiredTableBody").append(h1);
@@ -66,6 +67,7 @@
 
 	function populateWarningTable(warningMeters) {
 		$("#warningList tr").remove();
+		$("#warningList h1").remove();
 		if (warningMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Warning Meters</h1>");
 			$("#warningTableBody").append(h1);

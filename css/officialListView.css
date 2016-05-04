@@ -85,7 +85,7 @@ html, body {
 	border-bottom: 1px solid #333; 
 }
 
-#emptyListHeading {
+.emptyListHeading {
 	position: absolute;
 	top: 40%;
 	left: 12%;
