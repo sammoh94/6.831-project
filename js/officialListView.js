@@ -153,10 +153,22 @@
 
 		$("#sort-distance").click(function () {
 			sortByDistance();
+			$("#sort-distance").css("border","2px solid #000");
+			$("#sort-distance").css("color","black");
+			$("#sort-distance").css("background-color","white");
+			$("#sort-time").css("border","2px solid #fff");
+			$("#sort-time").css("color","white");
+			$("#sort-time").css("background-color","black");
 		});
 
 		$("#sort-time").click(function () {
 			sortByExpirationTime();
+			$("#sort-distance").css("border","2px solid #fff");
+			$("#sort-distance").css("color","white");
+			$("#sort-distance").css("background-color","black");
+			$("#sort-time").css("border","2px solid #000");
+			$("#sort-time").css("color","black");
+			$("#sort-time").css("background-color","white");
 		});
 
 		$("#goback").click(function() {
