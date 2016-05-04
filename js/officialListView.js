@@ -42,9 +42,8 @@
 							listOfWarningMeters.push(listOfMeters[i]);
 						}
 					}
-					console.log(listOfExpiredMeters, listOfWarningMeters);
 					populateExpiredTable(listOfExpiredMeters);
-					populateWarningTable(listOfWarningMeters)
+					populateWarningTable(listOfWarningMeters);
 				}
 			});
 		});
@@ -76,6 +75,49 @@
 		}
 	}
 
+	function sortByExpirationTime() {
+		listOfExpiredMeters.sort(function (a, b) {
+			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
+			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
+			var keyA = $.now() - (a.createdAt + a_remainingTimeInMS),
+				keyB = $.now() - (b.createdAt + b_remainingTimeInMS);
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+
+		listOfWarningMeters.sort(function (a, b) {
+			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
+			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
+			var keyA = (a.createdAt + a_remainingTimeInMS) - $.now(),
+				keyB = (b.createdAt + b_remainingTimeInMS) - $.now();
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		populateExpiredTable(listOfExpiredMeters);
+		populateWarningTable(listOfWarningMeters);
+	}
+
+	function sortByDistance() {
+		listOfExpiredMeters.sort(function (a, b) {
+			var keyA = a.distance,
+				keyB = b.distance;
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		listOfWarningMeters.sort(function (a, b) {
+			var keyA = a.distance,
+				keyB = b.distance;
+			if (keyA < keyB) return -1;
+			if (keyA > keyB) return 1;
+			return 0;
+		});
+		populateExpiredTable(listOfExpiredMeters);
+		populateWarningTable(listOfWarningMeters);
+	}
+
 	$(document).ready(function () {
 		retrieveDataAndPopulate();
 		setInterval(retrieveDataAndPopulate, 60000);
@@ -89,6 +131,14 @@
 			var $index = $(this).index();
 			sessionStorage.setItem('selectedWarningMeter', JSON.stringify(listOfWarningMeters[$index]));
 			window.location = $(this).data("href");
+		});
+
+		$("#sort-distance").click(function () {
+			sortByDistance();
+		});
+
+		$("#sort-time").click(function () {
+			sortByExpirationTime();
 		});
 
 		$("#goback").click(function() {
