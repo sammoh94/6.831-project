@@ -129,7 +129,7 @@
 					case "left":
 						var $index = $(this).index();
 						sessionStorage.setItem('selectedExpiredMeter', JSON.stringify(listOfExpiredMeters[$index]));
-						window.location = $(this).data("href");
+						window.location = "ticket.html";
 						break;
 				}
 			}
