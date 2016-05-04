@@ -62,7 +62,7 @@ html, body {
 	border-bottom: 1px solid #ddd; 
 }
 
-#emptyListHeading {
+.emptyListHeading {
 	position: absolute;
 	top: 40%;
 	left: 12%;

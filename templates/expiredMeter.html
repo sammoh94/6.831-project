@@ -12,6 +12,7 @@
 	<body>
 		<div id="map"></div>
 		<script>
+			var expiredMeterAddress = JSON.parse(sessionStorage.getItem("selectedExpiredMeter"));
 			function initMap() {
 		        var directionsService = new google.maps.DirectionsService;
 		        var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -25,8 +26,8 @@
 
 	      	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 		        directionsService.route({
-		          origin: "64 Bay State Road, Boston MA 02215",
-		          destination: "77 Mass Avenue, Cambridge, MA 02139",
+		          origin: sessionStorage.getItem("officialOriginAddress"),
+		          destination: expiredMeterAddress.address,
 		          travelMode: google.maps.TravelMode.DRIVING
 		        }, function(response, status) {
 		          if (status === google.maps.DirectionsStatus.OK) {
@@ -35,7 +36,12 @@
 		            window.alert('Directions request failed due to ' + status);
 	    	      }
 	    	    });
-	      	}	
+	      	}
+	      	$(document).ready(function () {
+	      		$("#locationAddress").html(expiredMeterAddress.address);
+	      		$("#meterNumber").html(expiredMeterAddress.meterNumber);
+	      		$("#licensePlateNumber").html(expiredMeterAddress.licensePlateNumber);
+	      	});
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async defer></script>
 		<div id="form-container">

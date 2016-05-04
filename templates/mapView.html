@@ -11,17 +11,12 @@
 	<script src="../js/mapView.js"></script>
 	</head>
 	<body>
-		<div id="map"></div>
 		<script>
 			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
 			// https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
 			function initMap() {
 				var latitude, longitude, geocoder = new google.maps.Geocoder;
 				var defaultLocation = {lat: 42.3497702, lng: -71.0959242}
-				var map = new google.maps.Map(document.getElementById('map'), {
-							center: defaultLocation,
-							zoom: 15
-				});
 				if (navigator.geolocation) {
 					// http://stackoverflow.com/questions/4565112/javascript-how-to-find-out-if-the-user-browser-is-chrome/13348618#13348618
 					var isChromium = window.chrome,
@@ -29,40 +24,24 @@
 						vendorName = winNav.vendor,
 						isIOSChrome = winNav.userAgent.match("CriOS");
 					if (isIOSChrome || (isChromium !== null && isChromium !== undefined && vendorName === "Google Inc.")) {
-						var marker = new google.maps.Marker({
-							position: defaultLocation,
-							map: map
-						})
 						$("#loadingView").css("display", "none");
-						$("#map").css("display", "block");
 						$("#form-container").css("display", "block");
 					} else {
 						navigator.geolocation.getCurrentPosition(function (position) {
 						latitude = position.coords.latitude;
 						longitude = position.coords.longitude;
 						var location = {lat: latitude, lng: longitude};
-						map.setCenter(location);
-						var marker = new google.maps.Marker({
-							position: location,
-							map: map
-						})
 						geocoder.geocode({'location': location}, function (results, status) {
 							if (status === google.maps.GeocoderStatus.OK) {
 								$("#inputAddress").val(results[1].formatted_address);
 							}
 						});
 						$("#loadingView").css("display", "none");
-						$("#map").css("display", "block");
 						$("#form-container").css("display", "block");
 					});
 					}
 				} else {
-					var marker = new google.maps.Marker({
-						position: defaultLocation,
-						map: map
-					})
 					$("#loadingView").css("display", "none");
-					$("#map").css("display", "block");
 					$("#form-container").css("display", "block");
 				}
 			}
@@ -88,10 +67,10 @@
 				<fieldset class="form-group">
 					<label for="radiusSelect" id="labelForRadiusSelect">Radius:</label>
 					<select id="radiusSelect" class="form-control">
-						<option value="0.5">0.5</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
+						<option value="0.5">0.5 mi</option>
+						<option value="1">1 mi</option>
+						<option value="2">2 mi</option>
+						<option value="3">3 mi</option>
 					</select>
 				</fieldset>
 				<a href="parkingOptions.html" class="btn" id="findParkingBtn">FIND PARKING!</a>
