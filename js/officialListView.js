@@ -33,5 +33,9 @@
 			sessionStorage.setItem('clickedRow', $id);
 			window.location = $(this).data("href");
 		});
+
+		$("#goback").click(function() {
+		    window.location="officialActionSelection.html"
+		});  
 	});
 })();

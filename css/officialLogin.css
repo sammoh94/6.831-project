@@ -69,11 +69,3 @@ form {
 	font-size: 8vmin;
 	color: #315987;
 }
-
-#goback {
-	height:7%;
-}
-
-#goback:hover {
-	cursor: pointer;
-}

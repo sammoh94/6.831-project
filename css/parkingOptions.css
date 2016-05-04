@@ -56,3 +56,13 @@
 	font-size: 60pt;
 	font-weight: bold;
 }
+
+#tableCaption {
+	font-size: 32pt;
+	font-weight: bold;
+}
+
+#tableheader {
+	font-size: 28pt;
+	font-weight: bold;
+}

@@ -8,8 +8,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/parkingOptions.css">
+	<link rel="stylesheet" href="../css/backbutton.css">
 	</head>
 	<body>
+		<div id="header"><img id="goback" src="../resources/backArrow.png"></img></div>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=getParkingOptions" async></script>
 		<script>
 			var streetParkRef = new Firebase("https://streetparkmit.firebaseio.com/");
@@ -111,16 +113,20 @@
 				$("#sortByDistance").click(function () {
 					sortByDistance();
 				});
+
+				$("#goback").click(function() {
+	    		window.location="mapView.html"
+		   		}); 
 			});
 
 		</script>
+		<h2 id="tableCaption"></h2>
 		<div id="sortButtonContainer">
 			<button id="sortByPrice" class="btn btn-primary sort" disabled>Sort By Price</button>
 			<button id="sortByDistance" class="btn btn-primary sort" disabled>Sort By Distance</button>
 		</div>
 		<table id="parkingOptions">
-			<caption id="tableCaption"></caption>
-			<thead>
+			<thead id="tableheader">
 				<tr><th>Address</th><th>Price (per hour)</th><th>Distance</th>
 			</thead>
 			<tbody id="optionsTableBody">
