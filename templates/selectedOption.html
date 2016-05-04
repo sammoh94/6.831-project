@@ -19,7 +19,8 @@
 			function showDestination() {
 				var map = new google.maps.Map(document.getElementById('map'), {
 					center: {lat: 42.3532264, lng: -71.0913747},
-					zoom: 15
+					zoom: 15,
+					disableDefaultUI: true
 				});
 				var geocoder = new google.maps.Geocoder();
 				selectedParkingOption = JSON.parse(sessionStorage.getItem("selectedParkingOption"));
