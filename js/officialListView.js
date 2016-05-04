@@ -76,11 +76,12 @@
 	}
 
 	function sortByExpirationTime() {
+		var currentTimestamp = $.now()
 		listOfExpiredMeters.sort(function (a, b) {
 			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
 			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
-			var keyA = $.now() - (a.createdAt + a_remainingTimeInMS),
-				keyB = $.now() - (b.createdAt + b_remainingTimeInMS);
+			var keyA = currentTimestamp - (a.createdAt + a_remainingTimeInMS),
+				keyB = currentTimestamp - (b.createdAt + b_remainingTimeInMS);
 			if (keyA < keyB) return -1;
 			if (keyA > keyB) return 1;
 			return 0;
@@ -89,8 +90,8 @@
 		listOfWarningMeters.sort(function (a, b) {
 			var a_remainingTimeInMS = parseInt(a.timeRemaining) * 60000
 			var b_remainingTimeInMS = parseInt(b.timeRemaining) * 60000
-			var keyA = (a.createdAt + a_remainingTimeInMS) - $.now(),
-				keyB = (b.createdAt + b_remainingTimeInMS) - $.now();
+			var keyA = (a.createdAt + a_remainingTimeInMS) - currentTimestamp,
+				keyB = (b.createdAt + b_remainingTimeInMS) - currentTimestamp;
 			if (keyA < keyB) return -1;
 			if (keyA > keyB) return 1;
 			return 0;
