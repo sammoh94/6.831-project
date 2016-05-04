@@ -19,19 +19,6 @@ html, body {
 	z-index: 1;
 }
 
-#expiringNotice {
-	height: 120px;
-	margin-top: 10px;
-	width: 100%;
-	font-size: 42pt;
-	font-weight: bold;
-	background-color: #FFEE58;
-	border-radius: 10px;
-	color: black;
-	padding: 20px;
-	text-align: center;
-}
-
 fieldset, button {
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -47,4 +34,10 @@ input {
 
 #locationAddress {
 	width: 78%;
+}
+
+span {
+	padding: 5px;
+	font-weight: bold;
+	color: #00838F;
 }

@@ -14,7 +14,6 @@ form {
 
 .button {
 	width: 60%;
-	height: 100px;
 	text-align: center;
 	vertical-align: middle;
 	line-height: 100px;
@@ -31,7 +30,7 @@ form {
 	cursor: pointer;
 }
 
-.text-field {
+.form-control {
 	width: 60%;
 	height: 10%;
 	text-align: center;
@@ -42,19 +41,19 @@ form {
 	font-size: 5vmin;
 }
 
-#blank1 {
+.blank1 {
 	height: 8%;
 }
 
-#blank2 {
+.blank2 {
 	height: 15%;
 }
 
-#blank3 {
+.blank3 {
 	height: 5%;
 }
 
-#blank4 {
+.blank4 {
 	height: 10%;
 }
 
@@ -68,4 +67,11 @@ form {
 	vertical-align: middle;
 	font-size: 8vmin;
 	color: #315987;
+}
+
+.logo {
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
 }

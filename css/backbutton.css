@@ -1,0 +1,14 @@
+#goback {
+	height:100%;
+	width:10%;
+	align: left;
+}
+
+#goback:hover {
+	cursor: pointer;
+}
+
+#header {
+	height:7%;
+	text-align: left;
+}

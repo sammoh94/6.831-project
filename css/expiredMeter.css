@@ -50,3 +50,9 @@ input {
 #locationAddress {
 	width: 78%;
 }
+
+span {
+	padding: 5px;
+	font-weight: bold;
+	color: #00838F;
+}
