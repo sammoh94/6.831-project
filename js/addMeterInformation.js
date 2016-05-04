@@ -4,7 +4,7 @@
 
 	$(document).ready(function () {
 		$("#goback").click(function() {
-	    	window.location="officialActionSelection.html"
+	    	window.location="officialListView.html"
 	    }); 
 
 		$(".form-control").keyup(function () {
@@ -33,7 +33,7 @@
 				timeRemaining: timeRemaining,
 				createdAt: $.now()
 			});
-			window.location = "officialActionSelection.html";
+			window.location = "officialListView.html";
 			return false;
 		});
 	});

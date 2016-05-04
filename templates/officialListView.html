@@ -14,8 +14,11 @@
 	<script src="../js/officialListView.js"></script>
 	</head>
 	<body>
-		<div id="header"><img id="goback" src="../resources/backArrow.png"></img></div>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc"></script>
+		<div id="top-bar"> 
+			<a href="#logout-popup"> <img id="bar-logout" src="../resources/home-white.png"> </a>
+			<a href="addMeterInformation.html"> <img id="bar-add-meter" src="../resources/add-white.png"> </a> 
+		</div>
 		<div class="container">
 			<ul class="nav nav-pills nav-justified">
 				<li class="active"><a data-toggle="tab" href="#expiredList">EXPIRED</a></li>
@@ -33,8 +36,18 @@
 				</table>
 			</div>
 		</div>
-		<div id="logoutBtnContainer">
-			<a href="appStartView.html" class="btn btn-info logout-btn">LOGOUT</a>
+		<div id="logout-popup" class="overlay">
+			<div class="popup">
+				<h2>Are you sure you want to log out now?</h2>
+				<a class="close" href="#">&times;</a>
+				<a class="button" href="appStartView.html" id="yes-logout-btn"> YES </a>
+				<a class="button" href="#" id="no-logout-btn"> GO BACK </a>
+			</div>
+		</div>
+		<div id="sort-bar">
+			<div id="sort-title"> SORT BY: </div>
+			<div class="sort-button" id="sort-distance"> Distance </div>
+			<div class="sort-button" id="sort-time"> Time </div>
 		</div>
 	</body>
 </html>
