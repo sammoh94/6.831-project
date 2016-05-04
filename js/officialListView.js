@@ -56,7 +56,7 @@
 			$("#expiredTableBody").append(h1);
 		} else {
 			for (var i=0; i<expiredMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td data-th='Address'>" + expiredMeters[i].name +"</td><td data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
+				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td class=addressTD data-th='Address'>" + expiredMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
 				$("#expiredTableBody").append(row);
 			}
 		}
@@ -69,7 +69,7 @@
 			$("#warningTableBody").append(h1);
 		} else {
 			for (var i=0; i<warningMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td data-th='Address'>" + warningMeters[i].name +"</td><td data-th='distance'>" + warningMeters[i].distance + " mi</td></tr>");
+				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td class=addressTD data-th='Address'>" + warningMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + warningMeters[i].distance + " mi</td></tr>");
 				$("#warningTableBody").append(row);
 			}
 		}
