@@ -88,5 +88,9 @@
 			sessionStorage.setItem('selectedWarningMeter', JSON.stringify(listOfWarningMeters[$index]));
 			window.location = $(this).data("href");
 		});
+
+		$("#goback").click(function() {
+		    window.location="officialActionSelection.html"
+		});  
 	});
 })();

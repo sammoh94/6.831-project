@@ -9,8 +9,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/mapView.css">
 	<script src="../js/mapView.js"></script>
+	<link rel="stylesheet" href="../css/backbutton.css">
 	</head>
 	<body>
+		<div id="header"><img id="goback" src="../resources/backArrow.png"></img></div>
 		<script>
 			// https://developers.google.com/maps/documentation/javascript/examples/marker-simple
 			// https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
@@ -53,6 +55,10 @@
 						window.alert("Please enter an address in the textbox");
 					}
 				});
+
+				$("#goback").click(function() {
+	    			window.location="appStartView.html"
+		   		}); 
 			})
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async></script>

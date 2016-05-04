@@ -69,14 +69,6 @@ form {
 	color: #315987;
 }
 
-#goback {
-	height:7%;
-}
-
-#goback:hover {
-	cursor: pointer;
-}
-
 .logo {
 	width: 80%;
 	margin-right: auto;

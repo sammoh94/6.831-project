@@ -32,8 +32,10 @@
         padding-left: 10px;
       }
     </style>
+    <link rel="stylesheet" href="../css/backbutton.css">
   </head>
   <body>
+    <div id="header"><img id="goback" src="../resources/backArrow.png"></img></div>
     <div id="map"></div>
     <div id="right-panel"></div>
     <script>
@@ -62,7 +64,7 @@
             window.alert('Directions request failed due to ' + status);
           }
         });
-      }
+      }      
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap">
