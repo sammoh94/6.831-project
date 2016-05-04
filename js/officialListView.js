@@ -4,7 +4,8 @@
 	var listOfWarningMeters = [];
 
 	function retrieveDataAndPopulate() {
-		var listOfMeters = [], parkingLotAddresses = [];
+		var listOfMeters = [], 
+			parkingLotAddresses = [];
 		var dMatrix = new google.maps.DistanceMatrixService();
 		// get all meters from firebase
 		meterListings.on("value", function (snapshot) {
@@ -27,6 +28,7 @@
 				avoidTolls: false 
 			}, function (response, status) {
 				if (status === google.maps.DistanceMatrixStatus.OK) {
+					listOfExpiredMeters = [], listOfWarningMeters = [];
 					var origin = response.originAddresses;
 					var destination = response.destinationAddresses;
 					var responseList = response.rows[0].elements;
@@ -49,7 +51,7 @@
 	}
 
 	function populateExpiredTable(expiredMeters) {
-		$("#expiredTableBody").empty();
+		$("#expiredList tr").remove();
 		if (expiredMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Expired Meters</h1>");
 			$("#expiredTableBody").append(h1);
@@ -62,7 +64,7 @@
 	}
 
 	function populateWarningTable(warningMeters) {
-		$("#warningTableBody").empty();
+		$("#warningList tr").remove();
 		if (warningMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Warning Meters</h1>");
 			$("#warningTableBody").append(h1);
