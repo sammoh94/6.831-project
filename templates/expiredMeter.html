@@ -43,6 +43,8 @@
 	      		$("#locationAddress").html(expiredMeterAddress.address);
 	      		$("#meterNumber").html(expiredMeterAddress.meterNumber);
 	      		$("#licensePlateNumber").html(expiredMeterAddress.licensePlateNumber);
+	      		var rawDate = new Date(expiredMeterAddress.createdAt + parseInt(expiredMeterAddress.timeRemaining) * 60000);
+	      		$("#expirationTime").html(rawDate.toLocaleTimeString()+" "+rawDate.toDateString());
 	      	});
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmttJYDrcH8tmiI6jIThxo_2ZBotMH_Wc&callback=initMap" async defer></script>
@@ -59,6 +61,10 @@
 				<fieldset class="form-group">
 					<label for="licensePlateNumber">License Plate #: </label>
 					<span id="licensePlateNumber"></span>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="expirationTime">Time of Expiration: </label>
+					<span id="expirationTime"></span>
 				</fieldset>
 				<a href="ticket.html" class="btn">GIVE TICKET!</a>
 			</form>

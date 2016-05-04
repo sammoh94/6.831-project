@@ -44,6 +44,7 @@
 					}
 					populateExpiredTable(listOfExpiredMeters);
 					populateWarningTable(listOfWarningMeters);
+					sortByExpirationTime();
 				}
 			});
 		});
