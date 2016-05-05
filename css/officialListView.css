@@ -80,6 +80,16 @@ html, body {
 	padding: 0px 25px 0px 25px;
 }
 
+.tab-pane thead th {
+	font-weight: 600;
+	background-color: #E6E6FA;
+}
+
+.tableheader {
+	font-size: 28pt;
+	font-weight: bold;
+}
+
 .tab-pane tbody tr:not(:last-child) {
 	border-top: 1px solid #333;
 	border-bottom: 1px solid #333; 
@@ -226,9 +236,13 @@ html, body {
 }
 
 .addressTD {
-	width: 70%;
+	width: 49%;
 }
 
 .distanceTD {
-	width: 20%;
+	width: 21%;
+}
+
+.expiresIn {
+	width: 30%;
 }

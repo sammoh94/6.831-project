@@ -51,14 +51,18 @@
 	}
 
 	function populateExpiredTable(expiredMeters) {
-		$("#expiredList tr").remove();
+		$("#expiredList tbody tr").remove();
 		$("#expiredList h1").remove();
+		var currentTimestamp = $.now();
 		if (expiredMeters.length === 0) {
 			var h1 = $("<h1 class='emptyListHeading'>No Expired Meters</h1>");
+			$("#expiredTableHeader").css("visibility", "hidden");
 			$("#expiredTableBody").append(h1);
 		} else {
+			$("#expiredTableHeader").css("visibility", "visible");
 			for (var i=0; i<expiredMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td class=addressTD data-th='Address'>" + expiredMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + expiredMeters[i].distance + " mi</td></tr>");
+				var expiredAt = Math.ceil((currentTimestamp - ((parseInt(expiredMeters[i].timeRemaining) * 60000) + expiredMeters[i].createdAt))/ 60000)
+				var row = $("<tr class='officialItem' data-href='expiredMeter.html'><td class=addressTD data-th='Address'>" + expiredMeters[i].name + "</td><td class=expiresIn data-th='Expired for'>" + expiredAt + "</td><td class=distanceTD data-th='Distance'>" + expiredMeters[i].distance + " mi</td></tr>");
 				$("#expiredTableBody").append(row);
 				addSwipeTo();
 			}
@@ -66,14 +70,18 @@
 	}
 
 	function populateWarningTable(warningMeters) {
-		$("#warningList tr").remove();
+		$("#warningList tbody tr").remove();
 		$("#warningList h1").remove();
+		var currentTimestamp = $.now();
 		if (warningMeters.length === 0) {
+			$("#warningTableHeader").css("visibility", "hidden");
 			var h1 = $("<h1 class='emptyListHeading'>No Warning Meters</h1>");
 			$("#warningTableBody").append(h1);
 		} else {
+			$("#warningTableHeader").css("visibility", "visible");
 			for (var i=0; i<warningMeters.length; i++) {
-				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td class=addressTD data-th='Address'>" + warningMeters[i].name +"</td><td class=distanceTD data-th='distance'>" + warningMeters[i].distance + " mi</td></tr>");
+				var expiresIn = Math.ceil((((parseInt(warningMeters[i].timeRemaining) * 60000) + warningMeters[i].createdAt) - currentTimestamp)/ 60000)
+				var row = $("<tr class='officialItem' data-href='warningMeter.html'><td class=addressTD data-th='Address'>" + warningMeters[i].name +"</td><td class=expiresIn data-th='Expires in'>"+ expiresIn + "</td><td class=distanceTD data-th='Distance'>"+ warningMeters[i].distance + " mi</td></tr>");
 				$("#warningTableBody").append(row);
 			}
 		}
